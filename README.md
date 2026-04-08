@@ -89,7 +89,7 @@ pip install -r requirements.txt
 
 ## Run the Backend API
 
-You can start the API in either way:
+You can start the API in either of the following ways:
 
 ```powershell
 uvicorn main:app --reload
@@ -113,7 +113,7 @@ Open:
 The frontend currently calls:
 - `http://127.0.0.1:8000`
 
-If you deploy backend/frontend separately, update `API_BASE_URL` in `page.html` to your deployed backend URL.
+If you deploy the backend and frontend separately, update `API_BASE_URL` in `page.html` to your deployed backend URL.
 
 ## API Endpoints
 
@@ -191,5 +191,5 @@ Important:
 
 ## Important Disclaimer
 
-This project is for educational/research support and software demonstration.
+This project is intended for educational/research support and software demonstration.
 It is not a medical diagnosis system and must not replace professional clinical judgment.
