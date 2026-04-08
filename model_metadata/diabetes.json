@@ -1,0 +1,58 @@
+{
+  "model_file": "models/diabetes.joblib",
+  "disease": "diabetes",
+  "model_type": "XGBClassifier",
+  "source_notebook": "Prog/Project Files/Diabetes/main.ipynb",
+  "target": {
+    "name": "diabetes",
+    "type": "binary",
+    "mapping": {
+      "0": "no diabetes",
+      "1": "diabetes"
+    }
+  },
+  "api_input_strategy": {
+    "accept_raw_inputs": true,
+    "feature_engineering_required_in_api": false,
+    "notes": [
+      "This model expects the processed base columns directly.",
+      "The API only needs to apply the category mappings below before prediction."
+    ]
+  },
+  "base_inputs_for_api": [
+    "gender",
+    "age",
+    "hypertension",
+    "heart_disease",
+    "smoking_history",
+    "bmi",
+    "HbA1c_level",
+    "blood_glucose_level"
+  ],
+  "category_mappings": {
+    "gender": {
+      "male": 0,
+      "female": 1
+    },
+    "smoking_history": {
+      "no": 0,
+      "former": 1,
+      "yes": 2
+    }
+  },
+  "normalization_notes": [
+    "Notebook preprocessing removed rows where gender was 'other'.",
+    "Notebook collapsed smoking history values as follows:",
+    "current -> yes",
+    "former -> former",
+    "ever -> former",
+    "not current -> former",
+    "never -> no",
+    "no info -> no"
+  ],
+  "performance": {
+    "holdout_accuracy": 0.9724,
+    "holdout_class1_f1": 0.8087,
+    "holdout_roc_auc": 0.9794
+  }
+}

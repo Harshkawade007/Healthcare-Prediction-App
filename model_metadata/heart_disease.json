@@ -1,0 +1,102 @@
+{
+  "model_file": "models/heart_disease.joblib",
+  "disease": "heart_disease",
+  "model_type": "CatBoostClassifier",
+  "source_notebook": "Prog/Project Files/Heart Diseases/main.ipynb",
+  "target": {
+    "name": "heart_disease",
+    "type": "binary",
+    "mapping": {
+      "0": "no heart disease",
+      "1": "heart disease"
+    },
+    "notes": [
+      "Original BRFSS target _MICHD was remapped as 1 -> 1 and 2 -> 0."
+    ]
+  },
+  "api_input_strategy": {
+    "accept_raw_inputs": true,
+    "feature_engineering_required_in_api": true,
+    "notes": [
+      "The saved model expects the final processed and engineered feature set listed below.",
+      "The original notebook trained after undersampling the training data only.",
+      "The packaged final artifact was fit on a balanced downsample of the full processed dataset to preserve that training behavior."
+    ]
+  },
+  "base_inputs_for_api": [
+    "high_bp",
+    "high_chol",
+    "stroke",
+    "asthma_ever",
+    "copd",
+    "arthritis",
+    "depression",
+    "kidney_disease",
+    "diabetes",
+    "sex",
+    "smoker",
+    "phys_active",
+    "age",
+    "bmi"
+  ],
+  "input_normalization_notes": [
+    "Missing survey codes 7, 9, 77, 99, 777, 999 were treated as missing and rows with missing values were dropped during training.",
+    "high_bp was normalized with 1/2/4 -> 1 and 3 -> 0.",
+    "diabetes was limited to values 1, 2, 3, 4.",
+    "bmi was divided by 100 from the original BRFSS _BMI5 field.",
+    "Columns removed before modeling: education_level, employment, race, income_level, asthma_now, bp_meds, chol_check, heart_attack, coronary_hd."
+  ],
+  "engineered_features_expected_by_model": [
+    "high_bp",
+    "high_chol",
+    "stroke",
+    "asthma_ever",
+    "copd",
+    "arthritis",
+    "depression",
+    "kidney_disease",
+    "diabetes",
+    "sex",
+    "smoker",
+    "phys_active",
+    "age",
+    "bmi",
+    "age_cat",
+    "age_x_bp",
+    "age_x_diab",
+    "chronic_count",
+    "age_sq",
+    "age_cu",
+    "age_log",
+    "cv_risk_index",
+    "resp_risk_index",
+    "burden_index",
+    "age_x_cv",
+    "age_bp_diab",
+    "bmi_x_age",
+    "bmi_log",
+    "bmi_sqrt"
+  ],
+  "feature_formulas": {
+    "age_cat": "cut(age, bins=[0, 40, 60, 120], labels=[0, 1, 2])",
+    "age_x_bp": "age * high_bp",
+    "age_x_diab": "age * diabetes",
+    "chronic_count": "sum(high_bp, diabetes, arthritis, stroke, copd, kidney_disease, high_chol)",
+    "age_sq": "age ** 2",
+    "age_cu": "age ** 3",
+    "age_log": "log1p(age)",
+    "cv_risk_index": "mean(high_bp, high_chol, diabetes, stroke)",
+    "resp_risk_index": "mean(copd, asthma_ever)",
+    "burden_index": "sum(high_bp, high_chol, diabetes, stroke, copd, arthritis, kidney_disease, depression, asthma_ever) / 9",
+    "age_x_cv": "age * cv_risk_index",
+    "age_bp_diab": "age * high_bp * diabetes",
+    "bmi_x_age": "bmi * age",
+    "bmi_log": "log1p(bmi)",
+    "bmi_sqrt": "sqrt(bmi)"
+  },
+  "performance": {
+    "holdout_accuracy": 0.7109,
+    "holdout_class1_f1": 0.3268,
+    "holdout_roc_auc": 0.8371
+  }
+}

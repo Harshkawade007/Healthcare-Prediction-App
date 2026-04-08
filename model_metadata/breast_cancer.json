@@ -1,0 +1,67 @@
+{
+  "model_file": "models/breast_cancer.joblib",
+  "disease": "breast_cancer",
+  "model_type": "CatBoostClassifier wrapped in sklearn Pipeline with StandardScaler",
+  "source_notebook": "Prog/Project Files/Breast cancer/Code/main.ipynb",
+  "target": {
+    "name": "breast_birads",
+    "type": "binary",
+    "mapping": {
+      "0": "lower-risk class",
+      "1": "higher-risk class"
+    },
+    "notes": [
+      "Original notebook merged BI-RADS 2 into 3 and BI-RADS 4 into 5.",
+      "Final remap used in training: 3 -> 0, 5 -> 1."
+    ]
+  },
+  "api_input_strategy": {
+    "accept_raw_inputs": true,
+    "feature_engineering_required_in_api": true,
+    "notes": [
+      "The saved model itself expects final engineered features.",
+      "FastAPI should collect the base medical inputs below and compute engineered fields before prediction."
+    ]
+  },
+  "base_inputs_for_api": [
+    "age",
+    "mean_width",
+    "max_width",
+    "mean_height",
+    "max_height",
+    "mean_area",
+    "max_area",
+    "findings_count",
+    "breast_density"
+  ],
+  "engineered_features_expected_by_model": [
+    "width_ratio",
+    "age_x_aspect",
+    "log_max_area",
+    "area_variability",
+    "aspect_ratio",
+    "age_x_density",
+    "height_ratio",
+    "density_x_mean_area",
+    "elongation",
+    "size_consistency"
+  ],
+  "feature_formulas": {
+    "width_ratio": "max_width / mean_width",
+    "height_ratio": "max_height / mean_height",
+    "area_ratio": "max_area / mean_area",
+    "aspect_ratio": "mean_width / mean_height",
+    "lesion_density_ratio": "findings_count / breast_density",
+    "age_x_density": "age * lesion_density_ratio",
+    "age_x_aspect": "age * aspect_ratio",
+    "area_variability": "max_area - mean_area",
+    "density_x_mean_area": "(breast_density * mean_area) / 1000",
+    "elongation": "max(width_ratio, height_ratio)",
+    "size_consistency": "1 / (width_ratio + height_ratio + area_ratio)",
+    "log_max_area": "log1p(max_area)"
+  },
+  "performance": {
+    "holdout_accuracy": 0.6647,
+    "holdout_weighted_f1": 0.6624
+  }
+}

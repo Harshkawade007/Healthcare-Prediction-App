@@ -1,0 +1,656 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI-Driven Healthcare Portfolio</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Fonts & Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    /* Fade-in animation */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+    /* Card hover lift */
+    .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
+    /* Button effects */
+    .btn-primary { transition: background-color 0.3s, transform 0.2s; }
+    .btn-primary:hover { transform: scale(1.03); }
+    .btn-secondary { transition: background-color 0.3s, transform 0.2s; }
+    .btn-secondary:hover { transform: scale(1.03); }
+    /* Scroll-to-top button */
+    #scrollTopBtn { transition: opacity 0.3s, transform 0.3s; }
+    #scrollTopBtn:hover { transform: scale(1.1); }
+    .nav-link {
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: #2563eb; /* Tailwind blue-600 */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: #2563eb;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  opacity: 1;
+}
+
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- HEADER & NAV -->
+  <header class="bg-white shadow sticky top-0 z-20">
+  <nav class="max-w-6xl mx-auto flex items-center justify-between px-4 h-16">
+    <span class="text-xl font-bold text-blue-600 cursor-pointer" onclick="scrollToNav(event, 'about')">
+      AI-Driven Healthcare
+    </span>
+    <div class="hidden sm:flex gap-6">
+      <button onclick="scrollToNav(event, 'about')" class="nav-link">About</button>
+      <button onclick="scrollToNav(event, 'projectInfo')" class="nav-link">Project Info</button>
+      <button onclick="scrollToNav(event, 'features')" class="nav-link">Features</button>
+      <button onclick="scrollToNav(event, 'projects')" class="nav-link">Models</button>
+    </div>
+  </nav>
+</header>
+
+
+  <!-- ABOUT / HERO -->
+<section id="about" class="py-24 bg-gradient-to-r from-blue-50 via-white to-blue-100">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-16 animate-fadeInUp">
+    <!-- Left: Text content -->
+    <div class="w-full lg:w-1/2 text-center lg:text-left space-y-8">
+      <!-- Title -->
+      <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+        <span class="text-blue-600">AI-Driven</span> <span>Personalized Healthcare</span>
+      </h1>
+      <!-- Tagline -->
+      <p class="text-2xl text-gray-700 font-semibold mb-3">
+        - Smarter decisions.<br> - Early risk insights.<br>
+        - Instant risk scores.<br> - Transparent explanations.<br> - Actionable insights.
+      </p>
+      <!-- Features with icons -->
+      <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 my-4">
+        <div class="flex items-center gap-2 bg-white shadow rounded-lg px-4 py-2">
+          <span class="text-xs text-blue-600 font-bold">ML</span>
+          <span class="font-medium text-gray-700 text-sm">5 Disease Models</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white shadow rounded-lg px-4 py-2">
+          <span class="text-xs text-green-600 font-bold">API</span>
+          <span class="font-medium text-gray-700 text-sm">FastAPI Prediction Backend</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white shadow rounded-lg px-4 py-2">
+          <span class="text-xs text-purple-600 font-bold">FE</span>
+          <span class="font-medium text-gray-700 text-sm">In-API Feature Engineering</span>
+        </div>
+      </div>
+    </div>
+    <!-- Right: Larger Image with glow -->
+    <div class="w-full lg:w-1/2 flex justify-center items-center relative">
+      <!-- Decorative ring (blurred) -->
+      <div class="absolute -top-14 -right-14 w-[28rem] h-[28rem] bg-gradient-to-br from-blue-300 via-purple-200 to-blue-200 rounded-full blur-3xl opacity-40 z-0 animate-pulse"></div>
+      <!-- Your Chosen Image, now much larger -->
+      <div class="relative z-10">
+        <img
+          src="https://plus.unsplash.com/premium_photo-1699387204388-120141c76d51?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Healthcare AI"
+          class="rounded-2xl shadow-2xl w-[420px] h-[260px] md:w-[500px] md:h-[320px] border-4 border-white object-cover"
+          style="object-fit:cover;"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+  <!-- PROJECT INFO -->
+  <section id="projectInfo" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 animate-fadeInUp">
+      <h2 class="text-3xl font-semibold text-center mb-12">About This Platform</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+  <!-- Who's It For? -->
+  <div class="bg-white p-6 rounded-2xl shadow card-hover">
+    <img
+      src="https://img.icons8.com/fluency/48/stethoscope.png"
+      alt="Care icon"
+      class="w-10 h-10 mb-4"
+    />
+    <h3 class="text-xl font-bold mb-2">For Everyone</h3>
+    <p class="text-sm text-gray-600 leading-relaxed">
+      Whether you're a patient, student, doctor, or just curious about health, this platform is built to help <b>anyone</b> understand risk factors and make smarter choices.
+    </p>
+  </div>
+  <!-- How Does It Work? -->
+  <div class="bg-white p-6 rounded-2xl shadow card-hover">
+    <img
+      src="https://img.icons8.com/fluency/48/puzzle.png"
+      alt="Guide icon"
+      class="w-10 h-10 mb-4"
+    />
+    <h3 class="text-xl font-bold mb-2">Simple & Clear</h3>
+    <p class="text-sm text-gray-600 leading-relaxed">
+      You don't need any medical or tech background. Just enter your info, and get instant risk scores, symptom checks, and clear explanations - no jargon.
+    </p>
+  </div>
+  <!-- Transparent Tech -->
+  <div class="bg-white p-6 rounded-2xl shadow card-hover">
+    <img
+      src="https://img.icons8.com/fluency/48/artificial-intelligence.png"
+      alt="AI icon"
+      class="w-10 h-10 mb-4"
+    />
+    <h3 class="text-xl font-bold mb-2">Transparent AI</h3>
+    <p class="text-sm text-gray-600 leading-relaxed">
+      We use trained CatBoost, XGBoost, and EfficientNet models and return clear prediction labels, probabilities, and confidence so results are easier to interpret.
+    </p>
+  </div>
+  <!-- Tech Stack -->
+  <div class="bg-white p-6 rounded-2xl shadow card-hover">
+    <img
+      src="https://img.icons8.com/fluency/48/source-code.png"
+      alt="Stack icon"
+      class="w-10 h-10 mb-4"
+    />
+    <h3 class="text-xl font-bold mb-2">Tech Stack</h3>
+    <p class="text-sm text-gray-600 leading-relaxed">
+      Frontend: HTML + Tailwind<br>
+      Backend: FastAPI + Uvicorn<br>
+      ML: CatBoost, XGBoost, EfficientNet-B0<br>
+      Runtime: Joblib + PyTorch (.pth)<br>
+      <span class="text-xs text-gray-400">Production-style API + model metadata</span>
+    </p>
+  </div>
+</div>
+      <div class="text-center mt-12">
+        <button onclick="scrollToNav(event, 'features')" class="btn-primary bg-blue-600 text-white px-6 py-2 rounded-full">
+  Explore Features
+</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+<section id="features" class="py-20 bg-white">
+  <div class="max-w-5xl mx-auto px-4 text-center animate-fadeInUp">
+    <h2 class="text-2xl font-semibold mb-10">Our Signature Solutions</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <!-- Know Thy Risk -->
+      <div class="bg-gray-50 p-8 rounded-2xl shadow card-hover text-left flex flex-col h-full">
+        <div class="flex items-center mb-4">
+          <img
+            src="https://img.icons8.com/fluency/48/graph-report.png"
+            alt="Risk icon"
+            class="w-9 h-9"
+          />
+          <h3 class="ml-3 text-xl font-bold">Know Thy Risk</h3>
+        </div>
+        <p class="text-gray-600 mb-6">
+          A 5-disease predictor suite covering breast cancer, diabetes, heart disease, liver cirrhosis stage, and lung disease image classification.
+        </p>
+        <button onclick="goToModels()" class="btn-primary bg-blue-600 text-white px-5 py-2 rounded-full mt-auto">
+          Try Know Thy Risk
+        </button>
+      </div>
+      <!-- Sniffle Sense -->
+      <div class="bg-gray-50 p-8 rounded-2xl shadow card-hover text-left flex flex-col h-full">
+        <div class="flex items-center mb-4">
+          <img
+            src="https://img.icons8.com/fluency/48/virus.png"
+            alt="Symptom icon"
+            class="w-9 h-9"
+          />
+          <h3 class="ml-3 text-xl font-bold">Sniffle Sense</h3>
+        </div>
+        <p class="text-gray-600 mb-6">
+          Input-friendly model workspace with field guidance, validation, and clean confidence-based output cards for each prediction call.
+        </p>
+        <button onclick="scrollTo('projects')" class="btn-primary bg-blue-600 text-white px-5 py-2 rounded-full mt-auto">
+          Open Prediction Workspace
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="projects" class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 animate-fadeInUp">
+    <h2 class="text-2xl font-semibold text-center mb-12">Projects & Models</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <div class="bg-white rounded-2xl shadow card-hover flex flex-col overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1200&q=80" alt="Liver disease model" class="h-36 w-full object-cover">
+        <div class="p-6 flex flex-col h-full">
+          <h3 class="font-bold text-lg mb-2">Liver Cirrhosis Classifier</h3>
+          <p class="text-gray-600 mb-4">XGBoost multiclass model (Stage 1/2/3) trained on clinical + lab features with categorical encoding.</p>
+          <span class="text-green-700 font-semibold mb-3">89.8% Accuracy | 0.972 Macro ROC-AUC</span>
+          <button onclick="openPredictor('liver')" class="mt-auto bg-blue-600 text-white rounded-lg px-5 py-2 text-xs font-semibold shadow hover:bg-blue-700 transition">
+            Predict
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow card-hover flex flex-col overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1200&q=80" alt="Heart disease model" class="h-36 w-full object-cover">
+        <div class="p-6 flex flex-col h-full">
+          <h3 class="font-bold text-lg mb-2">Heart Disease Predictor</h3>
+          <p class="text-gray-600 mb-4">CatBoost model with engineered risk interactions (age, BP, diabetes, chronic burden indices).</p>
+          <span class="text-green-700 font-semibold mb-3">0.837 ROC-AUC | 71.1% Accuracy</span>
+          <button onclick="openPredictor('heart')" class="mt-auto bg-blue-600 text-white rounded-lg px-5 py-2 text-xs font-semibold shadow hover:bg-blue-700 transition">
+            Predict
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow card-hover flex flex-col overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&w=1200&q=80" alt="Lung disease image model" class="h-36 w-full object-cover">
+        <div class="p-6 flex flex-col h-full">
+          <h3 class="font-bold text-lg mb-2">Lung Disease Predictor</h3>
+          <p class="text-gray-600 mb-4">EfficientNet-B0 chest X-ray classifier for 5 classes (bacterial/viral pneumonia, COVID, TB, normal).</p>
+          <span class="text-green-700 font-semibold mb-3">91.8% Test Accuracy | 0.989 Macro ROC-AUC</span>
+          <button onclick="openPredictor('lung')" class="mt-auto bg-blue-600 text-white rounded-lg px-5 py-2 text-xs font-semibold shadow hover:bg-blue-700 transition">
+            Predict
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow card-hover flex flex-col overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80" alt="Breast cancer model" class="h-36 w-full object-cover">
+        <div class="p-6 flex flex-col h-full">
+          <h3 class="font-bold text-lg mb-2">Breast Cancer Predictor</h3>
+          <p class="text-gray-600 mb-4">Pipeline model (StandardScaler + CatBoost) using engineered lesion geometry and density interactions.</p>
+          <span class="text-green-700 font-semibold mb-3">66.5% Accuracy | 66.2% Weighted F1</span>
+          <button onclick="openPredictor('breast')" class="mt-auto bg-blue-600 text-white rounded-lg px-5 py-2 text-xs font-semibold shadow hover:bg-blue-700 transition">
+            Predict
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow card-hover flex flex-col overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1579684453423-f84349ef60b0?auto=format&fit=crop&w=1200&q=80" alt="Diabetes model" class="h-36 w-full object-cover">
+        <div class="p-6 flex flex-col h-full">
+          <h3 class="font-bold text-lg mb-2">Diabetes Predictor</h3>
+          <p class="text-gray-600 mb-4">XGBoost binary classifier using demographic and metabolic markers (HbA1c, glucose, BMI, smoking history).</p>
+          <span class="text-green-700 font-semibold mb-3">97.2% Accuracy | 0.979 ROC-AUC</span>
+          <button onclick="openPredictor('diabetes')" class="mt-auto bg-blue-600 text-white rounded-lg px-5 py-2 text-xs font-semibold shadow hover:bg-blue-700 transition">
+            Predict
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="predictor" class="py-20 bg-white border-t border-gray-200">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-2xl font-semibold text-center mb-6">Prediction Workspace</h2>
+    <p id="predictorSubtitle" class="text-center text-gray-600 mb-8">Choose a model above to open its input form.</p>
+    <div class="bg-gray-50 rounded-2xl border border-gray-200 p-6">
+      <form id="predictorForm" class="grid grid-cols-1 md:grid-cols-2 gap-4"></form>
+      <div class="flex items-center gap-3 mt-6">
+        <button type="button" onclick="runPrediction()" class="bg-blue-600 text-white rounded-lg px-6 py-2 text-sm font-semibold shadow hover:bg-blue-700 transition">Run Prediction</button>
+        <span class="text-xs text-gray-500">Runs live prediction via FastAPI.</span>
+      </div>
+      <div id="predictionResult" class="mt-6 hidden rounded-lg border border-blue-100 bg-blue-50 p-4 text-sm text-gray-800"></div>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 bg-white border-t border-gray-200">
+    <div class="max-w-xl mx-auto px-4 text-center animate-fadeInUp">
+      <h2 class="text-2xl font-semibold mb-4">Contact</h2>
+      <p class="text-gray-600 mb-6">Let's collaborate or see more - reach out!</p>
+      <div class="flex justify-center space-x-6 mb-8">
+        <a href="#"    class="hover:text-blue-600">GitHub</a>
+        <a href="#" class="hover:text-blue-600">LinkedIn</a>
+        <a href="#"             class="hover:text-blue-600">Email</a>
+      </div>
+      <p class="text-sm text-gray-400">Copyright 2025 Harsh. All rights reserved.</p>
+    </div>
+  </section>
+  <!-- Scroll To Top Button -->
+  <button
+    id="scrollTopBtn"
+    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    class="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-80 hover:opacity-100"
+    aria-label="Scroll to top"
+  >
+    ^
+  </button>
+
+  <!-- Smooth Scroll JS -->
+<script>
+  const API_BASE_URL = "http://127.0.0.1:8000";
+
+  const modelForms = {
+    diabetes: {
+      title: "Diabetes Predictor",
+      endpoint: "/predict/diabetes",
+      fields: [
+        { key: "gender", label: "Gender", type: "select", options: ["male", "female"], help: "Biological sex used during model training.", range: "Options: male / female" },
+        { key: "age", label: "Age", type: "number", help: "Patient age in years.", range: "Typical adult range: 18-100 years" },
+        { key: "hypertension", label: "Hypertension", type: "number", help: "Whether high blood pressure is present.", range: "Use 0 = No, 1 = Yes" },
+        { key: "heart_disease", label: "Heart Disease", type: "number", help: "Known prior heart disease status.", range: "Use 0 = No, 1 = Yes" },
+        { key: "smoking_history", label: "Smoking History", type: "select", options: ["no", "former", "yes"], help: "Smoking status category.", range: "Options: no / former / yes" },
+        { key: "bmi", label: "BMI", type: "number", help: "Body Mass Index (kg/m²).", range: "Typical range: 15-50 kg/m²" },
+        { key: "HbA1c_level", label: "HbA1c", type: "number", help: "Average blood sugar marker over ~3 months.", range: "Typical range: 4.0-14.0 %" },
+        { key: "blood_glucose_level", label: "Blood Glucose", type: "number", help: "Current blood glucose level.", range: "Typical range: 70-300 mg/dL" }
+      ]
+    },
+    breast: {
+      title: "Breast Cancer Predictor",
+      endpoint: "/predict/breast",
+      fields: [
+        { key: "age", label: "Age", type: "number", help: "Patient age in years.", range: "Typical adult range: 18-100 years" },
+        { key: "mean_width", label: "Mean Width", type: "number", help: "Average lesion width from imaging.", range: "Enter positive value (same unit as scan report)" },
+        { key: "max_width", label: "Max Width", type: "number", help: "Maximum lesion width observed.", range: "Should be >= mean width" },
+        { key: "mean_height", label: "Mean Height", type: "number", help: "Average lesion height from imaging.", range: "Enter positive value" },
+        { key: "max_height", label: "Max Height", type: "number", help: "Maximum lesion height observed.", range: "Should be >= mean height" },
+        { key: "mean_area", label: "Mean Area", type: "number", help: "Average lesion area.", range: "Enter positive value" },
+        { key: "max_area", label: "Max Area", type: "number", help: "Maximum lesion area.", range: "Should be >= mean area" },
+        { key: "findings_count", label: "Findings Count", type: "number", help: "Count of notable imaging findings.", range: "Whole number, typically 0-10" },
+        { key: "breast_density", label: "Breast Density", type: "number", help: "Breast tissue density category.", range: "Use integer 1 to 4" }
+      ]
+    },
+    heart: {
+      title: "Heart Disease Predictor",
+      endpoint: "/predict/heart",
+      fields: [
+        { key: "high_bp", label: "High BP", type: "number", help: "History of high blood pressure.", range: "Use 0/1 or BRFSS style 1/2" },
+        { key: "high_chol", label: "High Cholesterol", type: "number", help: "History of high cholesterol.", range: "Use 0/1 or BRFSS style 1/2" },
+        { key: "stroke", label: "Stroke", type: "number", help: "History of stroke.", range: "Use 0/1 or BRFSS style 1/2" },
+        { key: "asthma_ever", label: "Asthma Ever", type: "number", help: "Whether diagnosed with asthma at any time.", range: "Use 0/1 or BRFSS style 1/2" },
+        { key: "copd", label: "COPD", type: "number", help: "Chronic obstructive pulmonary disease status.", range: "Use 0/1 or BRFSS style 1/2" },
+        { key: "arthritis", label: "Arthritis", type: "number", help: "History of arthritis.", range: "Use 0/1 or BRFSS style 1/2" },
+        { key: "depression", label: "Depression", type: "number", help: "History of depressive disorder.", range: "Use 0/1 or BRFSS style 1/2" },
+        { key: "kidney_disease", label: "Kidney Disease", type: "number", help: "History of kidney disease.", range: "Use 0/1 or BRFSS style 1/2" },
+        { key: "diabetes", label: "Diabetes Code", type: "number", help: "Diabetes survey category code.", range: "Use 1-4 (as in your dataset)" },
+        { key: "sex", label: "Sex Code", type: "number", help: "Sex code used in training data.", range: "Use 1 or 2" },
+        { key: "smoker", label: "Smoker", type: "number", help: "Smoking status code.", range: "Use 0/1 or BRFSS style 1/2" },
+        { key: "phys_active", label: "Physically Active", type: "number", help: "Any regular physical activity status.", range: "Use 0/1 or BRFSS style 1/2" },
+        { key: "age", label: "Age", type: "number", help: "Patient age in years.", range: "Typical adult range: 18-100 years" },
+        { key: "bmi", label: "BMI", type: "number", help: "Body Mass Index (kg/m²).", range: "Typical range: 15-50 kg/m²" }
+      ]
+    },
+    liver: {
+      title: "Liver Cirrhosis Predictor",
+      endpoint: "/predict/liver",
+      fields: [
+        { key: "Age", label: "Age (Years)", type: "number", help: "Patient age in years.", range: "Typical adult range: 18-100 years" },
+        { key: "Sex", label: "Sex", type: "select", options: ["F", "M"], help: "Biological sex used by training data.", range: "Options: F / M" },
+        { key: "Ascites", label: "Ascites", type: "select", options: ["N", "Y"], help: "Fluid buildup in abdomen.", range: "Options: N / Y" },
+        { key: "Hepatomegaly", label: "Hepatomegaly", type: "select", options: ["N", "Y"], help: "Liver enlargement status.", range: "Options: N / Y" },
+        { key: "Spiders", label: "Spiders", type: "select", options: ["N", "Y"], help: "Presence of spider angiomas.", range: "Options: N / Y" },
+        { key: "Edema", label: "Edema", type: "select", options: ["N", "S", "Y"], help: "Swelling severity status.", range: "N=None, S=Slight, Y=Yes" },
+        { key: "Bilirubin", label: "Bilirubin", type: "number", help: "Yellow pigment in blood; liver function marker.", range: "Typical range: 0.1-20 mg/dL" },
+        { key: "Cholesterol", label: "Cholesterol", type: "number", help: "Total cholesterol in blood.", range: "Typical range: 100-400 mg/dL" },
+        { key: "Albumin", label: "Albumin", type: "number", help: "Main blood protein made by liver.", range: "Typical range: 2.0-5.5 g/dL" },
+        { key: "Copper", label: "Copper", type: "number", help: "Copper concentration in blood.", range: "Typical range: 10-300 ug/dL" },
+        { key: "Alk_Phos", label: "Alk Phos", type: "number", help: "Alkaline phosphatase enzyme level.", range: "Typical range: 30-3000 U/L" },
+        { key: "SGOT", label: "SGOT (AST)", type: "number", help: "Liver enzyme (AST) in blood.", range: "Typical range: 10-500 U/L" },
+        { key: "Tryglicerides", label: "Triglycerides", type: "number", help: "Blood fat level.", range: "Typical range: 30-500 mg/dL" },
+        { key: "Platelets", label: "Platelets", type: "number", help: "Platelet count in blood.", range: "Typical range: 50-500 x10^9/L" },
+        { key: "Prothrombin", label: "Prothrombin", type: "number", help: "Blood clotting time indicator.", range: "Typical range: 8-20 seconds" }
+      ]
+    },
+    lung: {
+      title: "Lung Disease Predictor",
+      endpoint: "/predict/lung",
+      requestType: "multipart",
+      fields: [
+        { key: "file", label: "Upload Chest X-ray", type: "file", accept: "image/*", help: "Upload a frontal chest X-ray image.", range: "Accepted: JPG, PNG, WEBP" }
+      ]
+    }
+  };
+
+  let activeModelKey = null;
+
+  function openPredictor(modelKey) {
+    activeModelKey = modelKey;
+    const config = modelForms[modelKey];
+    const form = document.getElementById('predictorForm');
+    const subtitle = document.getElementById('predictorSubtitle');
+    const result = document.getElementById('predictionResult');
+    result.classList.add('hidden');
+    subtitle.textContent = `Active Model: ${config.title}`;
+    form.innerHTML = config.fields.map((f) => {
+      if (f.type === "select") {
+        return `
+          <label class="block">
+            <span class="text-xs text-gray-700 font-medium">${f.label}</span>
+            <select name="${f.key}" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="">Select</option>
+              ${f.options.map((opt) => `<option value="${opt}">${opt}</option>`).join("")}
+            </select>
+            <div class="text-[11px] text-gray-500 mt-1">${f.help || ""}</div>
+            <div class="text-[11px] text-blue-600">${f.range || ""}</div>
+          </label>
+        `;
+      }
+      if (f.type === "file") {
+        return `
+          <label class="block md:col-span-2">
+            <span class="text-xs text-gray-700 font-medium">${f.label}</span>
+            <input type="file" name="${f.key}" accept="${f.accept || ""}" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+            <div class="text-[11px] text-gray-500 mt-1">${f.help || ""}</div>
+            <div class="text-[11px] text-blue-600">${f.range || ""}</div>
+          </label>
+        `;
+      }
+      return `
+        <label class="block">
+          <span class="text-xs text-gray-700 font-medium">${f.label}</span>
+          <input type="${f.type || "text"}" name="${f.key}" placeholder="Enter value" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <div class="text-[11px] text-gray-500 mt-1">${f.help || ""}</div>
+          <div class="text-[11px] text-blue-600">${f.range || ""}</div>
+        </label>
+      `;
+    }).join("");
+    document.getElementById('predictor')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function riskBand(prob) {
+    if (prob >= 0.75) return "High";
+    if (prob >= 0.40) return "Moderate";
+    return "Low";
+  }
+
+  function formatPercent(value) {
+    return `${(value * 100).toFixed(2)}%`;
+  }
+
+  function buildHumanSummary(config, data) {
+    const label = data.predicted_label || `class ${data.predicted_class}`;
+    if (config.endpoint === "/predict/lung") {
+      const conf = Math.max(...(data.probabilities || [0]));
+      return `
+        <div class="text-lg font-semibold text-gray-900">Predicted Condition: ${label}</div>
+        <div class="text-sm text-gray-700 mt-1">Confidence: <span class="font-semibold">${formatPercent(conf)}</span></div>
+        <div class="text-xs text-gray-500 mt-2">Image model output. For medical decisions, combine with clinical context.</div>
+      `;
+    }
+
+    if (typeof data.positive_class_probability === "number") {
+      const prob = data.positive_class_probability;
+      return `
+        <div class="text-lg font-semibold text-gray-900">Prediction: ${label}</div>
+        <div class="text-sm text-gray-700 mt-1">Estimated disease risk: <span class="font-semibold">${formatPercent(prob)}</span> (${riskBand(prob)} risk)</div>
+        <div class="text-xs text-gray-500 mt-2">This is a model estimate, not a final diagnosis.</div>
+      `;
+    }
+
+    const probs = data.probabilities || [];
+    const conf = probs.length ? Math.max(...probs) : null;
+    return `
+      <div class="text-lg font-semibold text-gray-900">Prediction: ${label}</div>
+      ${conf !== null ? `<div class="text-sm text-gray-700 mt-1">Confidence: <span class="font-semibold">${formatPercent(conf)}</span></div>` : ""}
+      <div class="text-xs text-gray-500 mt-2">Use this as decision support with clinical interpretation.</div>
+    `;
+  }
+
+  function validateForm(config, formData) {
+    const missing = [];
+    config.fields.forEach((f) => {
+      if (f.type === "file") {
+        const file = formData.get(f.key);
+        if (!file || file.size === 0) missing.push(f.label);
+        return;
+      }
+      const val = formData.get(f.key);
+      if (val === null || String(val).trim() === "") missing.push(f.label);
+    });
+    return missing;
+  }
+
+  async function runPrediction() {
+    const result = document.getElementById('predictionResult');
+    if (!activeModelKey) {
+      result.classList.remove('hidden');
+      result.innerHTML = "<strong>Select a model first.</strong> Click a Predict button from the model cards.";
+      return;
+    }
+
+    const config = modelForms[activeModelKey];
+    const formEl = document.getElementById('predictorForm');
+    const formData = new FormData(formEl);
+    const missingFields = validateForm(config, formData);
+    if (missingFields.length) {
+      result.classList.remove('hidden');
+      result.innerHTML = `
+        <div class="font-semibold mb-1 text-amber-700">Please fill all fields</div>
+        <div class="text-xs text-gray-700">${missingFields.join(", ")}</div>
+      `;
+      return;
+    }
+
+    result.classList.remove('hidden');
+    result.innerHTML = `<div class="font-semibold mb-1">Running ${config.title}...</div><div class="text-xs text-gray-600">Calling ${API_BASE_URL}${config.endpoint}</div>`;
+
+    try {
+      let response;
+      let requestPreview;
+
+      if (config.requestType === "multipart") {
+        const file = formData.get("file");
+        if (!file || file.size === 0) {
+          result.innerHTML = "<strong>Please choose an image file first.</strong>";
+          return;
+        }
+        const uploadData = new FormData();
+        uploadData.append("file", file);
+        requestPreview = { file: file.name };
+        response = await fetch(`${API_BASE_URL}${config.endpoint}`, {
+          method: "POST",
+          body: uploadData
+        });
+      } else {
+        const payload = {};
+        config.fields.forEach((f) => {
+          const value = formData.get(f.key);
+          if (f.type === "number") {
+            payload[f.key] = Number(value);
+          } else {
+            payload[f.key] = value;
+          }
+        });
+        requestPreview = payload;
+        response = await fetch(`${API_BASE_URL}${config.endpoint}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+      }
+
+      const data = await response.json();
+      if (!response.ok) {
+        result.innerHTML = `
+          <div class="font-semibold mb-1 text-red-700">API Error (${response.status})</div>
+          <div class="text-xs text-gray-700 mb-2">Please check field values and format, then try again.</div>
+          <details class="text-xs">
+            <summary class="cursor-pointer text-red-700">Show technical details</summary>
+            <pre class="mt-2 bg-white border border-red-100 rounded p-3 overflow-x-auto">${JSON.stringify(data, null, 2)}</pre>
+          </details>
+        `;
+        return;
+      }
+
+      result.innerHTML = `
+        <div class="font-semibold mb-1">Prediction Result (${config.title})</div>
+        <div class="mb-2 text-xs text-gray-600">Request sent to ${API_BASE_URL}${config.endpoint}</div>
+        <div class="bg-white border border-blue-100 rounded-xl p-4">
+          ${buildHumanSummary(config, data)}
+        </div>
+        <details class="mt-3 text-xs">
+          <summary class="cursor-pointer text-gray-600">Show technical details (request/response)</summary>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+            <div>
+              <div class="font-medium mb-1">Request</div>
+              <pre class="text-xs bg-white border border-blue-100 rounded p-3 overflow-x-auto">${JSON.stringify(requestPreview, null, 2)}</pre>
+            </div>
+            <div>
+              <div class="font-medium mb-1">Response</div>
+              <pre class="text-xs bg-white border border-blue-100 rounded p-3 overflow-x-auto">${JSON.stringify(data, null, 2)}</pre>
+            </div>
+          </div>
+        </details>
+      `;
+    } catch (err) {
+      result.innerHTML = `
+        <div class="font-semibold mb-1 text-red-700">Connection Error</div>
+        <div class="text-xs text-gray-700 mb-2">Start FastAPI first: <code>uvicorn app.app:app --reload</code></div>
+        <pre class="text-xs bg-white border border-red-100 rounded p-3 overflow-x-auto">${String(err)}</pre>
+      `;
+    }
+  }
+
+  function goToModels() {
+    scrollTo('projects');
+  }
+
+  function scrollTo(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
+  // Improved nav-link active state and scroll
+  function scrollToNav(e, id) {
+    scrollTo(id);
+    // Remove active class from all
+    document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
+    // Add active to clicked
+    if (e && e.target) e.target.classList.add('active');
+  }
+  // Scroll To Top Button logic (unchanged)
+  const btn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 300 ? 'block' : 'none';
+  });
+  btn.style.display = 'none';
+</script>
+
+</body>
+</html>
+

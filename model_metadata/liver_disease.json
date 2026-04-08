@@ -1,0 +1,77 @@
+{
+  "model_file": "models/liver_disease.joblib",
+  "disease": "liver_disease",
+  "model_type": "XGBClassifier",
+  "source_notebook": "Prog/Project Files/Liver Disease/cirrhosis_xgboost.ipynb",
+  "target": {
+    "name": "Stage",
+    "type": "multiclass",
+    "mapping": {
+      "0": "original stage 1",
+      "1": "original stage 2",
+      "2": "original stage 3"
+    },
+    "notes": [
+      "Target was remapped in the notebook as 1 -> 0, 2 -> 1, 3 -> 2."
+    ]
+  },
+  "api_input_strategy": {
+    "accept_raw_inputs": true,
+    "feature_engineering_required_in_api": false,
+    "notes": [
+      "This model expects the processed base columns directly.",
+      "The notebook performed categorical mapping and age conversion before training.",
+      "Median imputation and exact-feature deduplication were used during training."
+    ]
+  },
+  "base_inputs_for_api": [
+    "Age",
+    "Sex",
+    "Ascites",
+    "Hepatomegaly",
+    "Spiders",
+    "Edema",
+    "Bilirubin",
+    "Cholesterol",
+    "Albumin",
+    "Copper",
+    "Alk_Phos",
+    "SGOT",
+    "Tryglicerides",
+    "Platelets",
+    "Prothrombin"
+  ],
+  "category_mappings": {
+    "Sex": {
+      "F": 0,
+      "M": 1
+    },
+    "Ascites": {
+      "N": 0,
+      "Y": 1
+    },
+    "Hepatomegaly": {
+      "N": 0,
+      "Y": 1
+    },
+    "Spiders": {
+      "N": 0,
+      "Y": 1
+    },
+    "Edema": {
+      "N": 0,
+      "S": 1,
+      "Y": 2
+    }
+  },
+  "normalization_notes": [
+    "Age was converted from days to years using (Age / 365).round(2).",
+    "Median imputation was applied to numeric columns.",
+    "Rows with exact duplicate feature values were removed before train/test split."
+  ],
+  "performance": {
+    "holdout_accuracy": 0.8979,
+    "holdout_macro_f1": 0.8977,
+    "holdout_macro_roc_auc": 0.9721
+  }
+}

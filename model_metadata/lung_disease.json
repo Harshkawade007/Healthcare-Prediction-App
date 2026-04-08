@@ -1,0 +1,56 @@
+{
+  "disease": "lung_disease",
+  "source_notebook": "Prog/Project Files/Lung Disease/lung_short.ipynb",
+  "model_format": "PyTorch state_dict (.pth or .pt), not joblib",
+  "status": "architecture_and_metadata_prepared_but_weights_missing_from_workspace",
+  "recommended_weights_filename": "models/lung_disease.pth",
+  "deployment_files": [
+    "lung_disease_model.py",
+    "models/lung_disease.pth"
+  ],
+  "model_type": "EfficientNet-B0 multiclass image classifier",
+  "classes": [
+    "Bacterial Pneumonia",
+    "Corona Virus Disease",
+    "Normal",
+    "Tuberculosis",
+    "Viral Pneumonia"
+  ],
+  "inference_input": {
+    "type": "image",
+    "color_mode": "RGB",
+    "resize": [224, 224],
+    "normalization_mean": [0.485, 0.456, 0.406],
+    "normalization_std": [0.229, 0.224, 0.225]
+  },
+  "training_summary": {
+    "optimizer": "Adam",
+    "loss": "CrossEntropyLoss",
+    "epochs": 15,
+    "best_validation_accuracy": 0.9181547619047619
+  },
+  "performance": {
+    "test_accuracy": 0.9180246913580247,
+    "macro_f1": 0.92,
+    "weighted_f1": 0.92,
+    "macro_roc_auc_ovr": 0.9885482285319354
+  },
+  "class_wise_notes": {
+    "strong_classes": [
+      "Corona Virus Disease",
+      "Normal",
+      "Tuberculosis"
+    ],
+    "main_confusion": [
+      "Bacterial Pneumonia vs Viral Pneumonia"
+    ],
+    "notes": [
+      "The confusion matrix shows most remaining errors are between bacterial and viral pneumonia.",
+      "This matches the expectation that image-only classification lacks patient clinical context needed for finer pneumonia subtype distinction."
+    ]
+  },
+  "confusion_matrix_notes": [
+    "True Bacterial Pneumonia predicted as Viral Pneumonia: 82",
+    "True Viral Pneumonia predicted as Bacterial Pneumonia: 50"
+  ]
+}
