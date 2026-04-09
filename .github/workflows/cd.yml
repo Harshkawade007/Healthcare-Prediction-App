@@ -50,15 +50,38 @@ jobs:
           RENDER_BACKEND_DEPLOY_HOOK_URL: ${{ secrets.RENDER_BACKEND_DEPLOY_HOOK_URL }}
           RENDER_FRONTEND_DEPLOY_HOOK_URL: ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK_URL }}
         run: |
+          trigger_hook() {
+            local name="$1"
+            local url="$2"
+            if [ -z "$url" ]; then
+              echo "$name deploy hook missing: skipped."
+              return 0
+            fi
+            code=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$url" || true)
+            if [ "$code" = "200" ] || [ "$code" = "201" ] || [ "$code" = "202" ]; then
+              echo "$name deploy hook triggered successfully (HTTP $code)."
+            else
+              echo "WARNING: $name deploy hook returned HTTP $code. Check deploy hook URL in GitHub secrets."
+            fi
+          }
+
+          trigger_hook "Backend" "${RENDER_BACKEND_DEPLOY_HOOK_URL}"
+          trigger_hook "Frontend" "${RENDER_FRONTEND_DEPLOY_HOOK_URL}"
+        shell: bash
+
+      - name: Deployment hook summary
+        env:
+          RENDER_BACKEND_DEPLOY_HOOK_URL: ${{ secrets.RENDER_BACKEND_DEPLOY_HOOK_URL }}
+          RENDER_FRONTEND_DEPLOY_HOOK_URL: ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK_URL }}
+        run: |
           if [ -z "${RENDER_BACKEND_DEPLOY_HOOK_URL}" ]; then
-            echo "Backend deploy hook missing: skipped backend redeploy trigger."
+            echo "Backend deploy hook status: missing"
           else
-            curl -fsS -X POST "${RENDER_BACKEND_DEPLOY_HOOK_URL}"
-            echo "Backend deploy hook triggered."
+            echo "Backend deploy hook status: configured"
           fi
           if [ -z "${RENDER_FRONTEND_DEPLOY_HOOK_URL}" ]; then
-            echo "Frontend deploy hook missing: skipped frontend redeploy trigger."
+            echo "Frontend deploy hook status: missing"
           else
-            curl -fsS -X POST "${RENDER_FRONTEND_DEPLOY_HOOK_URL}"
-            echo "Frontend deploy hook triggered."
+            echo "Frontend deploy hook status: configured"
           fi
+        shell: bash
