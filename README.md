@@ -189,6 +189,45 @@ Important:
 - If frontend is `https`, backend should also be `https`
 - Keep model files with the deployment artifact
 
+## Docker (Separate Backend and Frontend Images)
+
+This project includes two Dockerfiles:
+- `Dockerfile.backend` for FastAPI + models (uses `uv` for faster dependency installation and CPU-only PyTorch wheels)
+- `Dockerfile.frontend` for static UI (Nginx)
+
+### Build Backend Image
+
+```bash
+docker build -f Dockerfile.backend -t healthcare-backend:latest .
+```
+
+### Run Backend Container
+
+```bash
+docker run --rm -p 8000:8000 healthcare-backend:latest
+```
+
+Backend API will be available at:
+- `http://127.0.0.1:8000`
+
+### Build Frontend Image
+
+```bash
+docker build -f Dockerfile.frontend -t healthcare-frontend:latest .
+```
+
+### Run Frontend Container
+
+```bash
+docker run --rm -p 8080:80 healthcare-frontend:latest
+```
+
+Frontend will be available at:
+- `http://127.0.0.1:8080`
+
+Note:
+- Before deploying frontend, ensure its `API_BASE_URL` points to your deployed backend URL.
+
 ## Important Disclaimer
 
 This project is intended for educational/research support and software demonstration.

@@ -1,0 +1,16 @@
+.git
+.gitignore
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Local research/training artifacts not needed in deploy images
+Prog/Project Files
+catboost_info
+
+# IDE/editor
+.vscode
+.idea

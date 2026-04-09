@@ -1,0 +1,6 @@
+FROM nginx:1.27-alpine
+
+# Serve the static frontend as root page.
+COPY Prog/UI/page.html /usr/share/nginx/html/index.html
+
+EXPOSE 80
