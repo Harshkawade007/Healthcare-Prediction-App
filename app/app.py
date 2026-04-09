@@ -244,7 +244,7 @@ def _prediction_response(model: Any, features: pd.DataFrame, class_labels: list[
     return response
 
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 def root():
     return {
         "message": "Healthcare API is running.",
@@ -253,7 +253,7 @@ def root():
     }
 
 
-@app.get("/health")
+@app.api_route("/health", methods=["GET", "HEAD"])
 def health():
     return {"status": "ok"}
 
