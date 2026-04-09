@@ -250,3 +250,33 @@ docker compose down
 
 This project is intended for educational/research support and software demonstration.
 It is not a medical diagnosis system and must not replace professional clinical judgment.
+
+## CI/CD (GitHub Actions)
+
+This repo now includes:
+- `.github/workflows/ci.yml`
+- `.github/workflows/cd.yml`
+
+### Pipeline Behavior
+
+- CI runs on every push/PR to `main`:
+  - Python syntax compile checks
+  - `docker compose` config validation
+
+- CD runs on push to `main` (or manual run):
+  - Builds backend and frontend Docker images
+  - Pushes images to Docker Hub (`latest` + commit SHA tag)
+  - Triggers Render deploy hooks for backend and frontend
+
+### Required GitHub Secrets
+
+Go to:
+`Repository -> Settings -> Secrets and variables -> Actions`
+
+Add these secrets:
+- `DOCKERHUB_USERNAME`
+- `DOCKERHUB_TOKEN`
+- `RENDER_BACKEND_DEPLOY_HOOK_URL`
+- `RENDER_FRONTEND_DEPLOY_HOOK_URL`
+
+If deploy hook secrets are missing, image push still works and deploy trigger steps are skipped.
