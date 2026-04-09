@@ -462,7 +462,7 @@
     };
 
     try {
-      const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), 5000));
+      const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), 15000));
       const request = fetch(`${API_BASE_URL}/health`);
       const response = await Promise.race([request, timeout]);
       if (response && response.ok) {
@@ -498,6 +498,7 @@
   }
 
   function openPredictor(modelKey) {
+    checkApiStatus();
     activeModelKey = modelKey;
     const config = modelForms[modelKey];
     const form = document.getElementById('predictorForm');
@@ -595,6 +596,7 @@
   }
 
   async function runPrediction() {
+    checkApiStatus();
     const result = document.getElementById('predictionResult');
     if (!activeModelKey) {
       result.classList.remove('hidden');
@@ -717,6 +719,7 @@
   });
   btn.style.display = 'none';
   checkApiStatus();
+  setInterval(checkApiStatus, 30000);
 </script>
 
 </body>

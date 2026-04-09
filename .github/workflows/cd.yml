@@ -58,6 +58,10 @@ jobs:
               return 0
             fi
             code=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$url" || true)
+            if [ "$code" = "405" ]; then
+              echo "$name hook returned 405 on POST, retrying with GET..."
+              code=$(curl -s -o /dev/null -w "%{http_code}" -X GET "$url" || true)
+            fi
             if [ "$code" = "200" ] || [ "$code" = "201" ] || [ "$code" = "202" ]; then
               echo "$name deploy hook triggered successfully (HTTP $code)."
             else
