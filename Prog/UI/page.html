@@ -452,6 +452,16 @@
 
   let activeModelKey = null;
 
+  async function fetchWithTimeout(url, options = {}, timeoutMs = 90000) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      return await fetch(url, { ...options, signal: controller.signal });
+    } finally {
+      clearTimeout(timeoutId);
+    }
+  }
+
   async function checkApiStatus() {
     const badge = document.getElementById("apiStatusBadge");
     if (!badge) return;
@@ -462,9 +472,7 @@
     };
 
     try {
-      const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), 15000));
-      const request = fetch(`${API_BASE_URL}/health`);
-      const response = await Promise.race([request, timeout]);
+      const response = await fetchWithTimeout(`${API_BASE_URL}/health`, {}, 15000);
       if (response && response.ok) {
         setBadge("Backend: Live", "bg-emerald-100 text-emerald-800 border-emerald-200", "bg-emerald-500");
       } else {
@@ -618,7 +626,11 @@
     }
 
     result.classList.remove('hidden');
-    result.innerHTML = `<div class="font-semibold mb-1">Running ${config.title}...</div><div class="text-xs text-gray-600">Calling ${API_BASE_URL}${config.endpoint}</div>`;
+    result.innerHTML = `
+      <div class="font-semibold mb-1">Running ${config.title}...</div>
+      <div class="text-xs text-gray-600">Calling ${API_BASE_URL}${config.endpoint}</div>
+      <div class="text-xs text-amber-700 mt-2">If the backend is on Render free tier, the first request can take around 30-90 seconds while it wakes up.</div>
+    `;
 
     try {
       let response;
@@ -633,10 +645,10 @@
         const uploadData = new FormData();
         uploadData.append("file", file);
         requestPreview = { file: file.name };
-        response = await fetch(`${API_BASE_URL}${config.endpoint}`, {
+        response = await fetchWithTimeout(`${API_BASE_URL}${config.endpoint}`, {
           method: "POST",
           body: uploadData
-        });
+        }, 120000);
       } else {
         const payload = {};
         config.fields.forEach((f) => {
@@ -648,11 +660,11 @@
           }
         });
         requestPreview = payload;
-        response = await fetch(`${API_BASE_URL}${config.endpoint}`, {
+        response = await fetchWithTimeout(`${API_BASE_URL}${config.endpoint}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
-        });
+        }, 120000);
       }
 
       const data = await response.json();
@@ -689,9 +701,14 @@
         </details>
       `;
     } catch (err) {
+      const isTimeout = err && err.name === "AbortError";
       result.innerHTML = `
         <div class="font-semibold mb-1 text-red-700">Connection Error</div>
-        <div class="text-xs text-gray-700 mb-2">Start FastAPI first: <code>uvicorn app.app:app --reload</code></div>
+        <div class="text-xs text-gray-700 mb-2">
+          ${isTimeout
+            ? "The request took too long. On Render free tier, the backend may still be sleeping or temporarily unavailable."
+            : "The frontend could not reach the backend service."}
+        </div>
         <pre class="text-xs bg-white border border-red-100 rounded p-3 overflow-x-auto">${String(err)}</pre>
       `;
     }
