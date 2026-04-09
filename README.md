@@ -228,6 +228,24 @@ Frontend will be available at:
 Note:
 - Before deploying frontend, ensure its `API_BASE_URL` points to your deployed backend URL.
 
+### Run Both with Docker Compose
+
+Use this for local full-stack startup:
+
+```bash
+docker compose up --build
+```
+
+Then open:
+- Frontend: `http://127.0.0.1:8080`
+- Backend docs: `http://127.0.0.1:8000/docs`
+
+To stop:
+
+```bash
+docker compose down
+```
+
 ## Important Disclaimer
 
 This project is intended for educational/research support and software demonstration.
