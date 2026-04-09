@@ -86,19 +86,22 @@
         - Smarter decisions.<br> - Early risk insights.<br>
         - Instant risk scores.<br> - Transparent explanations.<br> - Actionable insights.
       </p>
-      <!-- Features with icons -->
-      <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 my-4">
-        <div class="flex items-center gap-2 bg-white shadow rounded-lg px-4 py-2">
-          <span class="text-xs text-blue-600 font-bold">ML</span>
-          <span class="font-medium text-gray-700 text-sm">5 Disease Models</span>
+      <!-- Feature Highlights -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
+        <div class="bg-white/90 backdrop-blur border border-blue-100 shadow-sm rounded-2xl px-5 py-4 text-left">
+          <div class="text-[11px] uppercase tracking-[0.18em] text-blue-600 font-bold mb-2">ML</div>
+          <div class="font-semibold text-gray-900 text-base">5 Disease Models</div>
+          <div class="text-xs text-gray-500 mt-1">Breast, diabetes, heart, liver, and lung workflows.</div>
         </div>
-        <div class="flex items-center gap-2 bg-white shadow rounded-lg px-4 py-2">
-          <span class="text-xs text-green-600 font-bold">API</span>
-          <span class="font-medium text-gray-700 text-sm">FastAPI Prediction Backend</span>
+        <div class="bg-white/90 backdrop-blur border border-emerald-100 shadow-sm rounded-2xl px-5 py-4 text-left">
+          <div class="text-[11px] uppercase tracking-[0.18em] text-emerald-600 font-bold mb-2">API</div>
+          <div class="font-semibold text-gray-900 text-base">FastAPI Backend</div>
+          <div class="text-xs text-gray-500 mt-1">Live prediction routes with deployment-ready serving.</div>
         </div>
-        <div class="flex items-center gap-2 bg-white shadow rounded-lg px-4 py-2">
-          <span class="text-xs text-purple-600 font-bold">FE</span>
-          <span class="font-medium text-gray-700 text-sm">In-API Feature Engineering</span>
+        <div class="bg-white/90 backdrop-blur border border-amber-100 shadow-sm rounded-2xl px-5 py-4 text-left">
+          <div class="text-[11px] uppercase tracking-[0.18em] text-amber-600 font-bold mb-2">Pipeline</div>
+          <div class="font-semibold text-gray-900 text-base">Smart Feature Flow</div>
+          <div class="text-xs text-gray-500 mt-1">User-friendly inputs transformed into model-ready features.</div>
         </div>
       </div>
     </div>
@@ -223,11 +226,11 @@
           <h3 class="ml-3 text-xl font-bold">Sniffle Sense</h3>
         </div>
         <p class="text-gray-600 mb-6">
-          Input-friendly model workspace with field guidance, validation, and clean confidence-based output cards for each prediction call.
+          A natural-language symptom assistant designed to let patients describe how they feel in plain words and receive general guidance, likely condition direction, and basic medicine-related advice.
         </p>
-        <button onclick="scrollTo('projects')" class="btn-primary bg-blue-600 text-white px-5 py-2 rounded-full mt-auto">
-          Open Prediction Workspace
-        </button>
+        <div class="mt-auto inline-flex items-center rounded-full bg-amber-100 text-amber-800 px-4 py-2 text-sm font-semibold">
+          Coming Soon
+        </div>
       </div>
     </div>
   </div>
@@ -240,7 +243,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
       <div class="bg-white rounded-2xl shadow card-hover flex flex-col overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1200&q=80" alt="Liver disease model" class="h-36 w-full object-cover">
+        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80" alt="Liver disease model" class="h-36 w-full object-cover">
         <div class="p-6 flex flex-col h-full">
           <h3 class="font-bold text-lg mb-2">Liver Cirrhosis Classifier</h3>
           <p class="text-gray-600 mb-4">XGBoost multiclass model (Stage 1/2/3) trained on clinical + lab features with categorical encoding.</p>
@@ -252,7 +255,7 @@
       </div>
 
       <div class="bg-white rounded-2xl shadow card-hover flex flex-col overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1200&q=80" alt="Heart disease model" class="h-36 w-full object-cover">
+        <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=1200&q=80" alt="Heart disease model" class="h-36 w-full object-cover">
         <div class="p-6 flex flex-col h-full">
           <h3 class="font-bold text-lg mb-2">Heart Disease Predictor</h3>
           <p class="text-gray-600 mb-4">CatBoost model with engineered risk interactions (age, BP, diabetes, chronic burden indices).</p>
@@ -264,7 +267,7 @@
       </div>
 
       <div class="bg-white rounded-2xl shadow card-hover flex flex-col overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&w=1200&q=80" alt="Lung disease image model" class="h-36 w-full object-cover">
+        <img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=1200&q=80" alt="Lung disease image model" class="h-36 w-full object-cover">
         <div class="p-6 flex flex-col h-full">
           <h3 class="font-bold text-lg mb-2">Lung Disease Predictor</h3>
           <p class="text-gray-600 mb-4">EfficientNet-B0 chest X-ray classifier for 5 classes (bacterial/viral pneumonia, COVID, TB, normal).</p>
@@ -276,7 +279,7 @@
       </div>
 
       <div class="bg-white rounded-2xl shadow card-hover flex flex-col overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80" alt="Breast cancer model" class="h-36 w-full object-cover">
+        <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80" alt="Breast cancer model" class="h-36 w-full object-cover">
         <div class="p-6 flex flex-col h-full">
           <h3 class="font-bold text-lg mb-2">Breast Cancer Predictor</h3>
           <p class="text-gray-600 mb-4">Pipeline model (StandardScaler + CatBoost) using engineered lesion geometry and density interactions.</p>
@@ -348,9 +351,11 @@
             </div>
           </div>
         </div>
-        <div class="mt-8 pt-6 border-t border-slate-200 text-xs text-slate-500 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
-          <span>Healthcare Prediction App</span>
-          <span>Copyright 2026 Harsh. All rights reserved.</span>
+        <div class="mt-8 pt-6 border-t border-slate-200 text-xs text-slate-500 flex flex-col sm:flex-row gap-4 sm:items-start sm:justify-between">
+          <span class="shrink-0">Healthcare Prediction App</span>
+          <span class="max-w-2xl text-left sm:text-right leading-relaxed">
+            Built for deployment and research demonstration. Results are predictive estimates only and should be used for overall guidance, not as a confirmed medical diagnosis or treatment decision.
+          </span>
         </div>
       </div>
     </div>
@@ -367,7 +372,19 @@
 
   <!-- Smooth Scroll JS -->
 <script>
-  const API_BASE_URL = "https://healthcare-backend-latest.onrender.com";
+  function getApiBaseUrl() {
+    const override = new URLSearchParams(window.location.search).get("api");
+    if (override) return override;
+
+    const host = window.location.hostname;
+    if (host === "127.0.0.1" || host === "localhost") {
+      return "http://127.0.0.1:8000";
+    }
+
+    return "https://healthcare-backend-latest.onrender.com";
+  }
+
+  const API_BASE_URL = getApiBaseUrl();
 
   const modelForms = {
     diabetes: {
